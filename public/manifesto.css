@@ -1,0 +1,162 @@
+/* ===========================
+   The Symbiosis Manifesto — styles
+   Calm, warm, accessible; mobile-first; dark-mode aware
+   =========================== */
+
+:root {
+  --bg: #0e0f11;
+  --panel: #14161a;
+  --text: #f5f7fa;
+  --muted: #b7c2cf;
+  --primary: #7bd1b8;  /* warm green-teal */
+  --primary-ink: #0b3b33;
+  --accent: #f0c27b;  /* soft gold for highlights */
+  --border: #24272d;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --radius: 16px;
+  --space: 18px;
+  --max: 1080px;
+  --focus: 0 0 0 3px rgba(123, 209, 184, .55);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7fafb;
+    --panel: #ffffff;
+    --text: #0e141b;
+    --muted: #536273;
+    --border: #e7ecf2;
+    --shadow: 0 10px 30px rgba(6,18,38,.06);
+    --primary-ink: #052c25;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(123,209,184,.10), transparent 60%),
+              radial-gradient(1000px 600px at 90% 10%, rgba(240,194,123,.08), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  text-rendering: optimizeLegibility;
+}
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 12px 16px;
+  background: rgba(20,22,26,.7); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+@media (prefers-color-scheme: light) {
+  .site-header { background: rgba(255,255,255,.7); }
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+.brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 6px rgba(123,209,184,.25); }
+.brand-name { text-decoration: none; color: var(--text); font-weight: 600; letter-spacing: .2px; }
+
+.top-nav a {
+  color: var(--muted); text-decoration: none; margin-left: 14px; font-weight: 500;
+}
+.top-nav a:hover { color: var(--text); }
+.top-nav .cta {
+  margin-left: 16px; padding: 8px 14px; border-radius: 999px; background: var(--primary); color: var(--primary-ink); font-weight: 700;
+}
+
+/* Hero */
+.hero { display: grid; place-items: center; padding: 64px 16px 48px; }
+.hero-card {
+  width: 100%; max-width: var(--max); background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 40%), var(--panel);
+  border: 1px solid var(--border); border-radius: calc(var(--radius) + 6px);
+  padding: clamp(20px, 4vw, 36px);
+  box-shadow: var(--shadow);
+}
+.hero-card h1 { font-size: clamp(28px, 4.6vw, 48px); margin: 0 0 10px; letter-spacing: .2px; }
+.lead { font-size: 1.125rem; color: var(--muted); margin: 0 0 18px; }
+.hero-actions { display: inline-flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+
+.btn {
+  display: inline-block; border: 1px solid var(--border); background: var(--panel);
+  color: var(--text); padding: 10px 14px; border-radius: 999px; text-decoration: none; font-weight: 600;
+}
+.btn.primary { background: var(--primary); color: var(--primary-ink); border-color: transparent; }
+.btn.ghost { background: transparent; }
+.btn:focus-visible { outline: none; box-shadow: var(--focus); }
+
+/* Sections */
+.section { padding: 42px 16px; }
+.section-header { max-width: var(--max); margin: 0 auto 16px; }
+.section-header h2 { margin: 0 0 6px; font-size: clamp(22px, 3.4vw, 32px); }
+.muted { color: var(--muted); }
+.subtle { color: var(--muted); font-size: .9rem; }
+
+/* Timeline */
+.timeline { max-width: var(--max); margin: 16px auto 0; display: grid; gap: 16px; }
+.time-card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow);
+}
+.time-card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+
+/* Quote */
+.pull-quote {
+  max-width: var(--max); margin: 22px auto 0; padding: 18px 20px;
+  border-left: 4px solid var(--accent); background: color-mix(in oklab, var(--panel) 88%, var(--accent) 12%);
+  border-radius: var(--radius);
+}
+.pull-quote p { margin: 0; }
+.pull-quote footer { margin-top: 10px; color: var(--muted); font-size: .95rem; }
+
+/* Grid + Cards */
+.grid { max-width: var(--max); margin: 8px auto 0; display: grid; gap: 16px; }
+.grid.two { grid-template-columns: 1fr; }
+@media (min-width: 860px) { .grid.two { grid-template-columns: 1fr 1fr; } }
+
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px 18px; box-shadow: var(--shadow);
+}
+.card h3 { margin: 0 0 8px; }
+.card .note { color: var(--muted); }
+
+/* Diagram */
+.diagram { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; align-items: center; gap: 10px; overflow-x: auto; }
+.diagram .pill {
+  padding: 10px 12px; background: color-mix(in oklab, var(--panel) 75%, var(--primary) 25%);
+  color: var(--primary-ink); border-radius: 999px; white-space: nowrap; font-weight: 700; border: 1px solid color-mix(in oklab, var(--border) 70%, var(--primary) 30%);
+}
+.diagram .arrow { text-align: center; color: var(--muted); font-weight: 800; }
+
+/* Lists */
+.checklist { padding-left: 18px; margin: 8px 0; }
+.checklist li { margin: 6px 0; }
+.numbered { padding-left: 18px; margin: 8px 0; }
+.numbered li { margin: 8px 0; }
+
+/* Details */
+.expando { max-width: var(--max); margin: 14px auto 0; }
+.expando summary { cursor: pointer; font-weight: 600; }
+.expando[open] summary { color: var(--primary); }
+
+/* Footer */
+.site-footer {
+  margin-top: 24px; padding: 24px 16px; border-top: 1px solid var(--border);
+  display: grid; gap: 8px; place-items: center; color: var(--muted);
+}
+.foot-links a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+.foot-links a:hover { color: var(--text); }
+
+/* Helpers */
+.center { text-align: center; }
+.stack { display: grid; gap: 10px; }
+.tiny { font-size: .85rem; color: var(--muted); }
+
+/* Focus visible */
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: none; box-shadow: var(--focus); border-radius: 8px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
